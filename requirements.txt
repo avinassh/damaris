@@ -1,0 +1,4 @@
+peewee==2.8.5
+praw==4.2.0
+pytg==0.4.10
+requests==2.12.4
