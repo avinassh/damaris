@@ -1,5 +1,6 @@
 import shutil
 import tempfile
+import random
 
 import requests
 from pytg import Telegram
@@ -7,7 +8,7 @@ import praw
 from peewee import SqliteDatabase, Model, CharField
 
 from settings import (REDDIT_APP_KEY, REDDIT_APP_SECRET, REDDIT_USER_AGENT,
-                      RECEPIENT, TG_CLI, TG_PUBKEY)
+                      RECEPIENT, TG_CLI, TG_PUBKEY, CAPTIONS)
 
 
 tg = Telegram(telegram=TG_CLI, pubkey_file=TG_PUBKEY)
@@ -44,7 +45,7 @@ def mark_thread_posted(thread_id, url):
 
 
 def get_random_caption():
-    pass
+    return random.choice(CAPTIONS)
 
 
 def is_thread_posted(thread_id):
