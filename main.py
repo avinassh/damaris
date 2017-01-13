@@ -1,3 +1,4 @@
+import time
 import shutil
 import tempfile
 import random
@@ -75,9 +76,15 @@ def post_stuff_from_reddit(subreddit_name='cats'):
         post_image_to_tg(recepient=RECEPIENT,
                          image_url=image_url, caption=get_random_caption())
         mark_thread_posted(thread_id=thread_id, url=image_url)
+        break
+
+
+def main():
+    initialize_db()
+    time.sleep(60 * random.randint(1, 120))
+    post_stuff_from_reddit()
+    deinit()
 
 
 if __name__ == '__main__':
-    initialize_db()
-    post_stuff_from_reddit()
-    deinit()
+    main()
