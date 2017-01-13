@@ -13,7 +13,7 @@ Damaris is a Telegram bot which fetches images from [/r/cats](https://www.reddit
 
         pip install -r requirements.txt
 
-2. Copy/rename `sample_settings.py` to `settings.py` and update it with Telegram API key and Reddit App key and secret.
+2. Copy/rename `sample_settings.py` to `settings.py` and update it with relevant settings.
 
 3. Run `main.py`:
 
