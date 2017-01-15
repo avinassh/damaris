@@ -12,10 +12,6 @@ from settings import (REDDIT_APP_KEY, REDDIT_APP_SECRET, REDDIT_USER_AGENT,
                       RECEPIENT, TG_CLI, TG_PUBKEY, CAPTIONS)
 
 
-tg = Telegram(telegram=TG_CLI, pubkey_file=TG_PUBKEY)
-reddit_client = praw.Reddit(user_agent=REDDIT_USER_AGENT,
-                            client_id=REDDIT_APP_KEY,
-                            client_secret=REDDIT_APP_SECRET)
 db = SqliteDatabase('damaris.db')
 
 
@@ -55,6 +51,7 @@ def is_thread_posted(thread_id):
 
 def post_image_to_tg(recepient, image_url, caption):
     # telegram restricts max characters of `caption` to be 200
+    tg = Telegram(telegram=TG_CLI, pubkey_file=TG_PUBKEY)
     sender = tg.sender
     with tempfile.NamedTemporaryFile(suffix='.jpg') as fp:
         response = requests.get(image_url, stream=True)
@@ -63,6 +60,9 @@ def post_image_to_tg(recepient, image_url, caption):
 
 
 def post_stuff_from_reddit(subreddit_name='cats'):
+    reddit_client = praw.Reddit(user_agent=REDDIT_USER_AGENT,
+                                client_id=REDDIT_APP_KEY,
+                                client_secret=REDDIT_APP_SECRET)
     for submission in reddit_client.subreddit('cats').hot():
         if submission.is_self:
             continue
